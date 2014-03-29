@@ -275,6 +275,14 @@ class Instafeed
           throw new Error "No access token. Use the 'accessToken' option."
 
         endpoint = "users/#{@options.userId}/media/recent"
+
+      when "liked"
+        # make sure there is an access token
+        if typeof @options.accessToken isnt 'string'
+          throw new Error "No access token. Use the 'accessToken' option."
+
+        endpoint = "users/self/media/liked"
+
       # throw an error if any other option is given
       else throw new Error "Invalid option for get: '#{@options.get}'."
 
